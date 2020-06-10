@@ -3,6 +3,8 @@
 # Waste Not
 
 ## About
+The purpose of this app is to prevent food waste by managing the products in your pantry and scheduling when and how to eat food items based on expiration dates you enter and recipes from Epicurios.com.
+
 A [Django](https://www.djangoproject.com/) project boilerplate/template with lots of state of the art libraries and tools like:
 - [React](https://facebook.github.io/react/), for building interactive UIs
 - [django-js-reverse](https://github.com/ierror/django-js-reverse), for generating URLs on JS
@@ -21,6 +23,11 @@ Also, includes a Heroku `app.json` and a working Django `production.py` settings
 - Papertrail, for logs and platform errors alerts (must set them manually)
 
 This is a good starting point for modern Python/JavaScript web projects.
+
+## Usage
+Once you register and/or login, you are directed to the Dashboard. The Dashboard is made up of 4 features: a quick add of food items, a piechart of wasted vs eaten foods, a list of foods that will expire soon (within the next 5 days), and a food waste prevention tip. Any food that has already expired will remain on the Dashboard list in red, giving room for foods that live beyond their expiration dates.
+In the navigation bar, you can go to your complete food list and search for any items you have entered. On the Meal Planner page, click "Plan my meal" and a random selection of one item from each food type will be listed. On Recipe Lookup you can enter any food item (in your pantry or not) and a list of recipes will be shown that are using that item. Click on the recipe title to view the ingredients and instructions.
+Update your food items every day or week by clicking the icons on either food list for whether you have eaten the item or wasted it (thrown it away/went bad).
 
 ## Running
 ### Setup

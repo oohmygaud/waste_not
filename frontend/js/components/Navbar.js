@@ -1,18 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
-import { AuthContext } from '../contexts/AuthContext';
-import { FoodContext } from '../contexts/FoodContext';
+import Button from '@material-ui/core/Button';
+import useFetch from 'use-http';
 
 const Navbar = () => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
-  const { isAuthenticated, toggleAuth } = useContext(AuthContext);
+  const [profile, setProfile] = React.useState();
   const theme = isLightTheme ? light : dark;
+  const api = useFetch('http://127.0.0.1:8000');
+  useEffect(() => {
+    getProfile()
+  }, [])
+
+  const { get, post, response, loading, error } = api;
+
+  async function logout_user(e) {
+    e.preventDefault()
+    await post("/api/accounts/logout/")
+    if (response.ok) window.location.pathname = "/login/"
+  }
+
+  async function getProfile() {
+    await get("/api/accounts/profile/")
+    if (response.ok) setProfile(response.data)
+  }
+
   return (
     <div className="navbar" style={{ background: theme.ui, color: theme.syntax}}>
-        <h1>Waste Not</h1>
+        <h1><a href="/">Waste Not</a></h1>
         <ul>
-          <li>Add Item</li>
-          <li>Recipe Lookup</li>
+          <li><a href="/food_list">Food List</a></li>
+          <li><a href="/planner">Meal Planner</a></li>
+          <li><a href="/lookup">Recipe Lookup</a></li>
+          {profile ? <li>
+            <Button
+              onClick={(e) => logout_user(e)}
+              >Logout</Button></li> : ""}
         </ul>
     </div>
   );

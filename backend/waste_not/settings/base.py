@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
+    "rest_framework",
+    "rest_registration",
     "django_js_reverse",
     "webpack_loader",
     "import_export",
@@ -112,3 +115,8 @@ CELERY_TIMEZONE = TIME_ZONE
 SENTRY_DSN = config("SENTRY_DSN", default="")
 COMMIT_SHA = config("HEROKU_SLUG_COMMIT", default="")
 
+REST_REGISTRATION = {
+    'REGISTER_VERIFICATION_ENABLED': False,
+    'RESET_PASSWORD_VERIFICATION_ENABLED': False,
+    'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
+}
