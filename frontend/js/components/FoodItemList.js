@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
-import uuid from 'uuid/v1';
 import useFetch from 'use-http';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -30,7 +29,7 @@ const FoodItemList = () => {
   const [pieCount, setPieCount] = useState([]);
   const [searchItem, setSearchItem] = useState();
   const { isLightTheme, light, dark } = useContext(ThemeContext);
-  const api = useFetch('http://127.0.0.1:8000/api', {
+  const api = useFetch('/api', {
     cachePolicy: 'no-cache',
   });
 

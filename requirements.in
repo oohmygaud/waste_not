@@ -6,7 +6,7 @@ django-js-reverse
 django-import-export
 django-extensions
 python-decouple
-psycopg2
+psycopg2-binary
 brotlipy
 django-log-request-id
 dj-database-url

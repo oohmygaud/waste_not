@@ -16,7 +16,7 @@ const Register = () => {
   const [password, setPassword] = useState();
   const [password_confirm, setPasswordConfirm] = useState();
   const { isLightTheme, light, dark } = useContext(ThemeContext);
-  const api = useFetch('http://127.0.0.1:8000', {
+  const api = useFetch('/api', {
     cachePolicy: 'no-cache',
   });
   const theme = isLightTheme ? light : dark;
@@ -25,7 +25,7 @@ const Register = () => {
 
   async function addUser(e, email, password, password_confirm) {
     e.preventDefault();
-    await post('/api/accounts/register/', { email, password, password_confirm });
+    await post('/accounts/register/', { email, password, password_confirm });
     window.location.pathname = "/login"
     return false;
   }

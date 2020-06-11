@@ -3,7 +3,7 @@ import useFetch from 'use-http';
 
 const MealPlanner = () => {
     const [meal, setMeal] = React.useState();
-    const { loading, error, data = [], get } = useFetch('http://127.0.0.1:8000/api/food_items/?status=in_pantry', []);
+    const { loading, error, data = [], get } = useFetch('/api/food_items/?status=in_pantry', []);
     
     const generateMeal = () => {
         let meat_list = [];

@@ -7,7 +7,7 @@ import Card from '@material-ui/core/Card';
 
 const RecipeDetails = ({ id }) => {
   console.log('remount');
-  const { loading, error, data = {}, get } = useFetch(`http://127.0.0.1:8000/api/recipes/${id}/`, [
+  const { loading, error, data = {}, get } = useFetch(`/api/recipes/${id}/`, [
     id,
   ]);
   const { isLightTheme, light, dark } = useContext(ThemeContext);

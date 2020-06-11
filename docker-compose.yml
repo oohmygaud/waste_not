@@ -3,14 +3,13 @@ version: '3.1'
 services:
   db:
     image: "postgres:alpine"
+    environment: 
+      POSTGRES_PASSWORD: waste_not
+      POSTGRES_USER: waste_not
+      POSTGRES_DB: waste_not
+      
     volumes:
       - .db:/var/lib/postgresql/data
-
-  broker:
-    image: "rabbitmq:alpine"
-
-  result:
-    image: "redis:alpine"
 
   frontend:
     build:
@@ -30,22 +29,7 @@ services:
       - "8000:8000"
     volumes:
       - ./:/home/user/app/
-    env_file: backend/.env
+    env_file: backend/.env.production
     depends_on:
       - db
-      - broker
-      - result
       - frontend
-
-  celery:
-    build:
-      dockerfile: backend/Dockerfile
-      context: .
-    command: python manage.py celery
-    volumes:
-      - ./backend/:/home/user/app/
-    env_file: backend/.env
-    depends_on:
-      - db
-      - broker
-      - result

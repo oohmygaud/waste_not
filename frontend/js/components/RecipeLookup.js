@@ -8,7 +8,7 @@ const RecipeLookUp = ({ search }) => {
   console.log('remount');
   const [searchItem, setSearchItem] = useState(search);
   const { loading, error, data = [], get } = useFetch(
-    'http://127.0.0.1:8000/api/recipes/?search=' + searchItem,
+    '/api/recipes/?search=' + searchItem,
     [search]
   );
   const { isLightTheme, light, dark } = useContext(ThemeContext);

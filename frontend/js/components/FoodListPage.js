@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 const FoodListPage = () => {
   const [foodList, setFoodList] = useState([]);
   const { isLightTheme, light, dark } = useContext(ThemeContext);
-  const api = useFetch('http://127.0.0.1:8000/api', {
+  const api = useFetch('/api', {
     cachePolicy: 'no-cache',
   });
   const { loading, error, response, data = [], get } = api;

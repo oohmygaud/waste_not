@@ -7,7 +7,7 @@ const Navbar = () => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const [profile, setProfile] = React.useState();
   const theme = isLightTheme ? light : dark;
-  const api = useFetch('http://127.0.0.1:8000');
+  const api = useFetch('/api');
   useEffect(() => {
     getProfile()
   }, [])
@@ -16,12 +16,12 @@ const Navbar = () => {
 
   async function logout_user(e) {
     e.preventDefault()
-    await post("/api/accounts/logout/")
+    await post("/accounts/logout/")
     if (response.ok) window.location.pathname = "/login/"
   }
 
   async function getProfile() {
-    await get("/api/accounts/profile/")
+    await get("/accounts/profile/")
     if (response.ok) setProfile(response.data)
   }
 
