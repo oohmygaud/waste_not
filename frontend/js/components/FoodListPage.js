@@ -5,8 +5,31 @@ import MaterialTable from 'material-table';
 import Grid from '@material-ui/core/Grid';
 
 const FoodListPage = () => {
+  const [foodList, setFoodList] = useState([]);
   const { isLightTheme, light, dark } = useContext(ThemeContext);
-  const { loading, error, data = [], get } = useFetch('http://127.0.0.1:8000/api/food_items', []);
+  const api = useFetch('http://127.0.0.1:8000/api', {
+    cachePolicy: 'no-cache',
+  });
+  const { loading, error, response, data = [], get } = api;
+  useEffect(() => {
+    loadFoodList()
+  }, [])
+
+  async function loadFoodList() {
+     const list = await get('/food_items/?status=in_pantry');
+     console.log(list)
+     if (response.ok) setFoodList(list)
+  }
+
+  async function eatenFoodItem(item) {
+    await api.put('/food_items/' + item.id + '/', { ...item, status: 'eaten' });
+    await loadFoodList();
+  }
+
+  async function wastedFoodItem(item) {
+    await api.put('/food_items/' + item.id + '/', { ...item, status: 'wasted' });
+    await loadFoodList();
+  }
 
   return (
     <div>
@@ -22,7 +45,8 @@ const FoodListPage = () => {
               { title: 'Recipes', field: 'recipes',
                 render: (rowData) => <a href={"/lookup/"+rowData.name}>Get Recipes</a>}
             ]}
-            data={data.map((foodItem) => ({
+            data={foodList.map((foodItem) => ({
+              id: foodItem.id,
               name: foodItem.name,
               category: foodItem.category,
               quantity: foodItem.quantity,
@@ -34,10 +58,12 @@ const FoodListPage = () => {
               {
                 icon: () => <i className="material-icons">check_circle_outline</i>,
                 tooltip: 'Eaten',
+                onClick: (e, rowData) => eatenFoodItem(rowData),
               },
               {
                 icon: () => <i className="material-icons">delete_sweep</i>,
                 tooltip: 'Wasted',
+                onClick: (e, rowData) => wastedFoodItem(rowData),
               },
             ]}
           />

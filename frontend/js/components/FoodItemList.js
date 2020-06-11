@@ -82,8 +82,7 @@ const FoodItemList = () => {
     setExpDate('');
   };
   return (
-    <div>
-      <Grid container spacing={2} justify="center">
+      <Grid container spacing={2} style={{width: "100%"}} justify="center">
         <Grid item xs={12} md={7} lg={7}>
           <Card style={{ marginTop: '20px', background: theme.bg, color: theme.syntax }}>
             <form onSubmit={handleSubmit}>
@@ -244,7 +243,6 @@ const FoodItemList = () => {
           </Card>
         </Grid>
       </Grid>
-    </div>
   );
 };
 

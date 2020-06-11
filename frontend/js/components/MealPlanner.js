@@ -20,8 +20,8 @@ const MealPlanner = () => {
         const new_meal = {
             meat: meat_list[Math.floor(Math.random()*meat_list.length)],
             veggie: veggie_list[Math.floor(Math.random()*veggie_list.length)],
-            fruit: fruit_list[Math.floor(Math.random()*fruit_list.length)],
             carbs: carbs_list[Math.floor(Math.random()*carbs_list.length)],
+            fruit: fruit_list[Math.floor(Math.random()*fruit_list.length)],
         }
         console.log('Generated', new_meal)
         return new_meal;
@@ -44,10 +44,10 @@ const MealPlanner = () => {
                 {meal ? meal.veggie : ''}
             </div>
             <div>
-                {meal ? meal.fruit : ''}
+                {meal ? meal.carbs : ''}
             </div>
             <div>
-                {meal ? meal.carbs : ''}
+                {meal ? meal.fruit : ''}
             </div>
         </div>
     )
