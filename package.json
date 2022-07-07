@@ -43,7 +43,7 @@
     "marked": "~0.8.0",
     "material-design-icons": "^3.0.1",
     "material-table": "^1.59.0",
-    "moment": "^2.26.0",
+    "moment": "^2.29.4",
     "navi": "^0.14.0",
     "node-sass": "~4.13.1",
     "popper.js": "~1.16.0",
